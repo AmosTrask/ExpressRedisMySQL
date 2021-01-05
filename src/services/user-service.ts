@@ -16,6 +16,15 @@ export class UserService {
         return null;
     }
 
+    public static async getAllUsers(): Promise<User[]> {
+      return await UserRepository.getAllUsers();
+    }
+
+    public static async getUserByUsername(username: string) : Promise<User> {
+      const user = await UserRepository.getUserByUsername(username);
+      return user != null ? user : null;
+    }
+
     public static async existingUsername(username: string): Promise<boolean> {
         const user = await UserRepository.getUserByUsername(username);
         if (user) {
